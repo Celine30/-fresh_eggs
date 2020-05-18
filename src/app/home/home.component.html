@@ -1,0 +1,46 @@
+<h2 class="col-12 text-center">Reserver des oeufs</h2>
+
+<div class="container-form text-center">
+    <form [formGroup]="ResaForm" (ngSubmit)="onSubmitForm()">
+    <mat-form-field appearance="fill" class="col-6">
+        <mat-label >Nom</mat-label>
+        <input matInput formControlName="name" >
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="col-6">
+        <mat-label>Prénom</mat-label>
+        <input matInput formControlName="last_name" >
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="col-6">
+        <mat-label>Numéro de tel</mat-label>
+        <input matInput formControlName="number" >
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [matDatepickerFilter]="myFilter">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+   
+
+    <br>
+    <mat-form-field>
+        <mat-label>Selectionnez une quantité</mat-label>
+        <mat-select [(value)]="selected" formControlName="boite">
+            <mat-option value="1 boîte de 6"> 1 boîte de 6 </mat-option>
+            <mat-option value="2 boîtes de 6"> 2 boîtes de 6 </mat-option>
+            <mat-option value="3 boîtes de 6"> 3 boîtes de 6 </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <p>Vous vous apprêtez à reserver {{selected}}, Merci de vous engager à venir la chercher</p>
+
+
+    <br>
+    <button mat-raised-button color="primary" type=submit class="mb-5" >Envoyer les informations</button>
+    </form>
+</div>
