@@ -4,28 +4,29 @@
     <form [formGroup]="ResaForm" (ngSubmit)="onSubmitForm()">
     <mat-form-field appearance="fill" class="col-6">
         <mat-label >Nom</mat-label>
-        <input matInput formControlName="name" >
+        <input matInput name='name' ngModel formControlName="name" [formControl]="name" >
     </mat-form-field>
+    <p>
+        Value: {{ name.value }}
+      </p>
     <br>
     <mat-form-field appearance="fill" class="col-6">
         <mat-label>Prénom</mat-label>
         <input matInput formControlName="last_name" >
     </mat-form-field>
+    
     <br>
     <mat-form-field appearance="fill" class="col-6">
         <mat-label>Numéro de tel</mat-label>
         <input matInput formControlName="number" >
     </mat-form-field>
     <br>
-
     <mat-form-field class="example-full-width">
         <mat-label>Choose a date</mat-label>
-        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [matDatepickerFilter]="myFilter">
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [matDatepickerFilter]="myFilter" formControlName="date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-   
-
+    </mat-form-field>
     <br>
     <mat-form-field>
         <mat-label>Selectionnez une quantité</mat-label>
@@ -41,6 +42,17 @@
 
 
     <br>
-    <button mat-raised-button color="primary" type=submit class="mb-5" >Envoyer les informations</button>
+    <button mat-raised-button color="primary" type=submit class="mb-5" [disabled]="ResaForm.invalid">Envoyer les informations</button>
     </form>
 </div>
+
+<div class="container">
+    <label>
+        Email:
+        <input type="text" [formControl]="email">
+    </label>
+    <p>
+        Value: {{ email.value }}
+    </p>
+</div>
+
