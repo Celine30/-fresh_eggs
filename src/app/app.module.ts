@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +17,7 @@ import { BackoffComponent } from './backoff/backoff.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { Identifiants } from './services/identifiants';
+import { OrderService } from './services/order.service';
 
 
 @NgModule({
@@ -34,12 +36,14 @@ import { Identifiants } from './services/identifiants';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     AuthService,
     AuthGuard,
-    Identifiants
+    Identifiants,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })
