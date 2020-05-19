@@ -8,11 +8,11 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat-core();
-
+$colorPrimary:#7cb342;
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$fresh-eggs-primary: mat-palette($mat-indigo);
+$fresh-eggs-primary: mat-palette($mat-light-green);
 $fresh-eggs-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -30,3 +30,5 @@ $fresh-eggs-theme: mat-light-theme($fresh-eggs-primary, $fresh-eggs-accent, $fre
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+

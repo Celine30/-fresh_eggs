@@ -1,0 +1,21 @@
+<h2 class="col-12 text-center">Identification</h2>
+
+<div class="container-form text-center">
+    <form [formGroup]="AuthForm" (ngSubmit)="onsignIn()">
+
+    <mat-form-field appearance="fill" class="col-6">
+        <mat-label>Identifiant</mat-label>
+        <input matInput formControlName="identifiant" >
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="col-6">
+        <mat-label>Mot de passel</mat-label>
+        <input matInput formControlName="mdp" >
+    </mat-form-field>
+ 
+    <br>
+    <button mat-raised-button color="primary" type=submit class="mb-5" >Envoyer les informations</button>
+    <div *ngIf="error" class="row col-6 m-auto alert alert-danger">Erreur d'identification</div>
+    </form>
+    
+</div>

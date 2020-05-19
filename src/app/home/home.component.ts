@@ -32,8 +32,6 @@ export class HomeComponent implements OnInit {
       number:'',
       date:'',
       boite:'',
-      
-
     })
   }
 

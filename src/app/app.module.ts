@@ -11,6 +11,12 @@ import { HomeComponent } from './home/home.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { ConseilComponent } from './conseil/conseil.component';
 import { EggsComponent } from './eggs/eggs.component';
+import { AuthComponent } from './auth/auth.component';
+import { BackoffComponent } from './backoff/backoff.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
+import { Identifiants } from './services/identifiants';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +24,9 @@ import { EggsComponent } from './eggs/eggs.component';
     HomeComponent,
     ErrorPageComponent,
     ConseilComponent,
-    EggsComponent
+    EggsComponent,
+    AuthComponent,
+    BackoffComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +37,9 @@ import { EggsComponent } from './eggs/eggs.component';
     ReactiveFormsModule
   ],
   providers: [
-    
+    AuthService,
+    AuthGuard,
+    Identifiants
   ],
   bootstrap: [AppComponent]
 })
