@@ -1,3 +1,6 @@
+@import '../styles.scss';
+
+
 mat-sidenav-container{
     min-height: 100%;
     .navbar_material{
@@ -17,11 +20,18 @@ mat-sidenav-container{
 
         mat-icon{
             margin-right: 5px;
+        } 
+    }
+    mat-toolbar{
+        img{
+            height: 50px;
         }
     }
 
     .container_bloc{
-        min-height: 85vh;
+        min-height: 87vh;
+        // background:url("../assets/Logo.png") no-repeat;
+        // background-size: cover;
     }
     
 }    
