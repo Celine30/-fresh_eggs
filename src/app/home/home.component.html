@@ -1,58 +1,81 @@
-<h2 class="col-12 text-center">Reserver des oeufs</h2>
+<h2 class="col-12 text-center"> <i class="vert fas fa-egg mr-3"></i> Reserver des oeufs <i class=" vert fas fa-egg ml-3"></i></h2>
 
 <div class="container-form text-center">
     <form [formGroup]="ResaForm" (ngSubmit)="onSubmitForm()">
-    <mat-form-field appearance="fill" class="col-6">
+
+    <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)">
+        <p  *ngIf="f.name.hasError('required')" class=" text-left text-danger mess_error" role="alert">
+            Champs obligatoire
+        </p>
+    </div>
+    <mat-form-field appearance="fill" class="full-width">
         <mat-label >Nom</mat-label>
-        <input matInput name='name' ngModel formControlName="name" [formControl]="name" >
+        <input matInput name='name'  formControlName="name" >
     </mat-form-field>
-    <p>
-        Value: {{ name.value }}
-      </p>
+
     <br>
-    <mat-form-field appearance="fill" class="col-6">
+
+    <div *ngIf="f.last_name.invalid && (f.last_name.dirty || f.last_name.touched)">
+        <p  *ngIf="f.last_name.hasError('required')" class=" text-left text-danger mess_error" role="alert">
+            Champs obligatoire
+        </p>
+    </div>
+    <mat-form-field appearance="fill" class="full-width">
         <mat-label>Prénom</mat-label>
         <input matInput formControlName="last_name" >
     </mat-form-field>
     
     <br>
-    <mat-form-field appearance="fill" class="col-6">
+
+    <div *ngIf="f.number.invalid && (f.number.dirty || f.number.touched)">
+        <p  *ngIf="f.number.hasError('required')||f.number.hasError('pattern')" class=" text-left text-danger mess_errorB" role="alert">
+            Merci d'entrer un numéro valide
+        </p>
+    </div>
+    <mat-form-field appearance="fill" class="full-widthB">
         <mat-label>Numéro de tel</mat-label>
         <input matInput formControlName="number" >
     </mat-form-field>
+
     <br>
-    <mat-form-field class="example-full-width">
-        <mat-label>Choose a date</mat-label>
+
+    <div *ngIf="f.date.invalid && (f.date.dirty || f.date.touched)">
+        <p  *ngIf="f.date.hasError('required')||f.date.hasError('matDatepickerMin')||f.date.hasError('matDatepickerMax')||f.date.hasError('matDatepickerFilter')" class="text-left text-danger mess_errorB" role="alert">
+            Merci d'entrer une date correspondant à une date de marché (voir le calendrier)
+        </p>
+    </div>
+    <mat-form-field  color = "primary" class="full-widthB">
+        <mat-label>Choisir une date de marché </mat-label>
         <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [matDatepickerFilter]="myFilter" formControlName="date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+
     <br>
-    <mat-form-field>
+
+    <div *ngIf="f.boite.invalid && (f.boite.dirty || f.boite.touched)">
+        <p  *ngIf="f.boite.hasError('required')" class="text-left text-danger mess_errorB">  Merci d'indiquer la quantité souhaitée </p> 
+    </div>
+    <mat-form-field class="full-widthB">
         <mat-label>Selectionnez une quantité</mat-label>
         <mat-select [(value)]="selected" formControlName="boite">
-            <mat-option value="1 boîte de 6"> 1 boîte de 6 </mat-option>
-            <mat-option value="2 boîtes de 6"> 2 boîtes de 6 </mat-option>
-            <mat-option value="3 boîtes de 6"> 3 boîtes de 6 </mat-option>
+            <mat-option value="1 boîte de 6"> 1 boîte de 6 (6 unités) </mat-option>
+            <mat-option value="2 boîtes de 6"> 2 boîtes de 6 (12 unités) </mat-option>
+            <mat-option value="3 boîtes de 6"> 3 boîtes de 6 (18 unités) </mat-option>
         </mat-select>
     </mat-form-field>
 
+    <br>
 
-    <p>Vous vous apprêtez à reserver {{selected}}, Merci de vous engager à venir la chercher</p>
-
+    <mat-checkbox color="primary" formControlName="engagement" class="full-widthB">Je m'engage à venir chercher : {{selected}}  Oeufs réservée(s)</mat-checkbox>
 
     <br>
-    <button mat-raised-button color="primary" type=submit class="mb-5" [disabled]="ResaForm.invalid">Envoyer les informations</button>
-    </form>
+    <div class='btn_send_order'>
+        <p *ngIf="message" class="vert" > Oeufs réservé, à bientôt </p>
+        <button mat-raised-button color="primary" type=submit class="mb-5" [disabled]="ResaForm.invalid">Envoyer les informations</button> 
+    </div>
+</form>
 </div>
 
-<div class="container">
-    <label>
-        Email:
-        <input type="text" [formControl]="email">
-    </label>
-    <p>
-        Value: {{ email.value }}
-    </p>
-</div>
+
 
