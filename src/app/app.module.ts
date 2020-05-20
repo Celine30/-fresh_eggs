@@ -18,6 +18,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { Identifiants } from './services/identifiants';
 import { OrderService } from './services/order.service';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { OrderService } from './services/order.service';
     ConseilComponent,
     EggsComponent,
     AuthComponent,
-    BackoffComponent
+    BackoffComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
