@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../services/order.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-backoff',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BackoffComponent implements OnInit {
 
-  constructor() { }
+  orders=[{name:'cemline'}];
+  orderSubscription: Subscription;
+
+  constructor(private orderservice:OrderService) { }
 
   ngOnInit(): void {
+    this.orderservice.getOrderToServer()
+    this.orderSubscription = this.orderservice.ordersSubject.subscribe(
+      (orders:any[])=>{
+        this.orders = orders
+      }
+    );
+    //this.orderservice.emitOrderSubject()
   }
-
 }
+
+
