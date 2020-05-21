@@ -9,7 +9,9 @@ export class OrderService{
 
     constructor( private httpClient : HttpClient ) {}
 
-    public orders=[ new Order (1, '38', 'azert', 'azerty', 'azerty', 'azerty')]
+    public orders=[]
+
+    public ordersObject=[]
 
     ordersSubject = new Subject<any>();
 
@@ -18,10 +20,8 @@ export class OrderService{
     }
 
     addOrder(order:any){
-        console.log(order)
-        console.log(this.orders)
         this.httpClient
-        .post('https://kaamelott-7aaa9.firebaseio.com/orders.json', this.orders)
+        .post('https://kaamelott-7aaa9.firebaseio.com/orders.json', order)
         .subscribe(
             ()=>{
                 console.log('Enregistrement terminé');
@@ -37,8 +37,8 @@ export class OrderService{
             .get<any[]>('https://kaamelott-7aaa9.firebaseio.com/orders.json')
             .subscribe(
                 (response) =>{
-                    console.log(Object.values(response))
-                    this.orders = Object.values(response);
+                    this.orders = Array.from(Object.values(response));
+                    
                     this.emitOrderSubject();
                 },
                 (error) => {
