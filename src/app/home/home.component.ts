@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
       name:['',[Validators.required]],
       last_name:['',[Validators.required]],
       number:['',[Validators.required , Validators.pattern('^(0[0-9]{1})([/ _.-]?[0-9]{2}){4}')]],
-      date:['',[Validators.required]],
+      date:[Date,[Validators.required]],
       boite:['',[Validators.required]],
       engagement:['',[Validators.required]],
     })
@@ -51,9 +51,11 @@ export class HomeComponent implements OnInit {
 
   onSubmitForm(){
     const formValue = this.ResaForm.value;
+
     console.log(formValue)
-    this.orderservice.addOrder(formValue); 
-    this.Router.navigate(["home", 'send']);
+
+    //this.orderservice.addOrder(formValue); 
+    //this.Router.navigate(["home", 'send']);
   }
 
   onReset(): void {

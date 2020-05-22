@@ -1,8 +1,22 @@
 
-<mat-form-field>
+<!-- <mat-form-field>
     <mat-label>Filter</mat-label>
+    
     <input matInput (keyup)="applyFilter($event)" placeholder="22/5">
-  </mat-form-field>
+
+   
+</mat-form-field> -->
+
+<form [formGroup]="FiltreForm" (ngSubmit)="onSubmitForm()" class="d-flex">
+    <mat-form-field  color = "primary" class="full-widthB">
+        <mat-label>Choisir une date de marché </mat-label>
+        <input matInput [min]="minDate" [matDatepicker]="picker" [matDatepickerFilter]="myFilter" formControlName="date" >
+        <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type=submit class="mb-5" [disabled]="FiltreForm.invalid">Filtrer</button> 
+   
+</form>
   
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   

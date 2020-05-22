@@ -20,6 +20,7 @@ export class OrderService{
     }
 
     addOrder(order:any){
+        console.log(order)
         this.httpClient
         .post('https://kaamelott-7aaa9.firebaseio.com/orders.json', order)
         .subscribe(
