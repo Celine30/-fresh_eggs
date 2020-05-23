@@ -24,9 +24,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class BackoffComponent implements OnInit {
 
-  essai:any
-  orderUnit:any
-  tableau=[]
   
   FiltreForm : FormGroup;
   minDate: Date;

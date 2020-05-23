@@ -1,21 +1,21 @@
 
-<div class="recherche" class="container">
+<div class="recherche" class="container mt-4">
 
-  <div class="d-flex justify-content-between">
-    
-  <form [formGroup]="FiltreForm" (ngSubmit)="onSubmitForm()" >
-      <mat-form-field  color = "primary" class=" ">
-          <mat-label>Choisir une date de marché </mat-label>
-          <input matInput [min]="minDate" [matDatepicker]="picker" [matDatepickerFilter]="myFilter" formControlName="date" >
-          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <button mat-raised-button color="primary" type=submit class="ml-3" [disabled]="FiltreForm.invalid">Filtrer</button> 
-  </form>
+    <div class="d-flex justify-content-between">
+        
+      <form [formGroup]="FiltreForm" (ngSubmit)="onSubmitForm()" >
+          <mat-form-field  color = "primary" class=" ">
+              <mat-label>Choisir une date de marché </mat-label>
+              <input matInput [min]="minDate" [matDatepicker]="picker" [matDatepickerFilter]="myFilter" formControlName="date" >
+              <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type=submit class="ml-3" [disabled]="FiltreForm.invalid">Filtrer</button> 
+      </form>
 
-  <button mat-flat-button color = "warn" (click)="resetFilters()" class='stop_filter'> Réinitialiser le filtre </button>
+      <button mat-flat-button color = "primary" (click)="resetFilters()" class='stop_filter'> Réinitialiser le filtre </button>
 
-</div>
+    </div>
 </div>
 
 <table mat-table [dataSource]="dataSource" matSort class=" container mat-elevation-z8">

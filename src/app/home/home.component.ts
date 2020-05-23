@@ -43,7 +43,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-
     this.message = this.route.snapshot.params['caller']
   }
 
@@ -51,12 +50,12 @@ export class HomeComponent implements OnInit {
 
   onSubmitForm(){
     const formValue = this.ResaForm.value;
-
     console.log(formValue)
-
-    //this.orderservice.addOrder(formValue); 
-    //this.Router.navigate(["home", 'send']);
+    this.orderservice.addOrder(formValue); 
+    this.resetForm();
+    this.Router.navigate(["conseil"]);
   }
+
 
   onReset(): void {
     this.resetForm();
