@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import {MatSort} from '@angular/material/sort';
 
 export interface PeriodicElement {
   name: string;
   first_name: string;
   date: Date;
-  boite: Number;
+  boite: number;
 }
 
 
@@ -24,24 +24,35 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class BackoffComponent implements OnInit {
 
+  essai:any
+  orderUnit:any
+  tableau=[]
+  
   FiltreForm : FormGroup;
   minDate: Date;
   orders=[];
   orderSubscription: Subscription;
-
-  displayedColumns: string[] = ['name', 'first_name', 'date', 'boite'];
+  displayedColumns: string[] = ['name', 'last_name', 'date', 'boite'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
+  
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
     return day !== 0 && day !== 2 && day !== 3 && day !== 4 &&  day !== 6;
   }
 
+  constructor(private orderservice:OrderService, private formBuilder : FormBuilder) {this.minDate = new Date(); }
+
+
   applyFilter(filterValue) {
-    this.dataSource.filter = filterValue;    
+    this.dataSource.filter = filterValue;  
+    this.getTotalCost()  
   }
 
-  constructor(private orderservice:OrderService, private formBuilder : FormBuilder) {this.minDate = new Date(); }
+  resetFilters(){
+    this.dataSource.filter = "";
+  }
 
   initForm(){
     this.FiltreForm = this.formBuilder.group({
@@ -51,24 +62,28 @@ export class BackoffComponent implements OnInit {
 
   onSubmitForm(){
     const formValue = this.FiltreForm.value.date;
-    console.log(new Date(formValue))
-    console.log(formValue.toISOString())
     this.applyFilter(formValue.toISOString())
+    
   }
 
   get f() { return this.FiltreForm.controls; }
 
-  ngOnInit(): void {
   
+  getTotalCost() {
+    return this.dataSource.filteredData.map(t => t.boite).reduce((acc, value) => acc + value, 0);
+  }
+
+  ngOnInit(): void {
     this.initForm();
+    this.dataSource.sort = this.sort;
     this.orderservice.getOrderToServer()
     this.orderSubscription = this.orderservice.ordersSubject.subscribe(
       (response)=>{
-        this.dataSource.data = response;
-        this.orders = response;
+        this.dataSource.data= response;
+        console.log(this.dataSource.data)
       }
     );
   }
-}
 
+}
 

@@ -15,6 +15,10 @@ export class OrderService{
 
     ordersSubject = new Subject<any>();
 
+
+    orderUnit:any
+    tableau=[]
+
     emitOrderSubject (){
         this.ordersSubject.next(this.orders.slice());
     }
@@ -38,8 +42,11 @@ export class OrderService{
             .get<any[]>('https://kaamelott-7aaa9.firebaseio.com/orders.json')
             .subscribe(
                 (response) =>{
-                    this.orders = Array.from(Object.values(response));
-                    
+                    for (const property of Object.values(response)) {
+                        this.orderUnit = {name:property.name.toUpperCase(), last_name:property.last_name.toUpperCase(), date:property.date, boite:parseInt(property.boite)}
+                        this.tableau.push(this.orderUnit)
+                    }
+                    this.orders=this.tableau
                     this.emitOrderSubject();
                 },
                 (error) => {
