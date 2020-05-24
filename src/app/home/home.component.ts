@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
     console.log(formValue)
     this.orderservice.addOrder(formValue); 
     this.resetForm();
-    this.Router.navigate(["conseil"]);
+    this.Router.navigate(["thanks"]);
   }
 
 

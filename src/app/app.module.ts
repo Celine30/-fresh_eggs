@@ -19,6 +19,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { Identifiants } from './services/identifiants';
 import { OrderService } from './services/order.service';
 import { FooterComponent } from './footer/footer.component';
+import { ThanksComponent } from './thanks/thanks.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FooterComponent } from './footer/footer.component';
     EggsComponent,
     AuthComponent,
     BackoffComponent,
-    FooterComponent
+    FooterComponent,
+    ThanksComponent
   ],
   imports: [
     BrowserModule,
