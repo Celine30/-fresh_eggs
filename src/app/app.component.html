@@ -5,7 +5,7 @@
             <a mat-list-item routerLink="home"><i class="vert fas fa-shopping-basket mr-3"></i> Reserver </a>
             <a mat-list-item routerLink="eggs"><i class="vert fas fa-egg mr-3"></i> Mes Oeufs</a>
             <a mat-list-item routerLink="conseil"><i class="vert far fa-comment-dots mr-2"></i> Nos conseils</a>
-            <a mat-list-item routerLink="backoff"><i class="vert far fa-building mr-2"></i> {{auth}} BackOff</a>
+            <a *ngIf="backoff" mat-list-item routerLink="backoff"><i class="vert far fa-building mr-2"></i> BackOff</a>
         </mat-nav-list>
     </mat-sidenav>
 

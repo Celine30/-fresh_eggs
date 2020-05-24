@@ -14,17 +14,20 @@ export class AppComponent implements OnInit {
   opened = false;
   auth:boolean;
 
-  authSubscription: Subscription;
+  backoff = false
+
+  //authSubscription: Subscription;
 
   constructor(private authservice : AuthService) { }
 
   ngOnInit(): void {
-    this.authSubscription = this.authservice.authSubject.subscribe(
-      (data:boolean)=>{
-        this.auth = data
-      }
-    );
-    this.authservice.emitPostSubject()
+    // this.backoff=this.authservice.isAuth;
+    // this.authSubscription = this.authservice.authSubject.subscribe(
+    //   (data:boolean)=>{
+    //     this.auth = data
+    //   }
+    // );
+    // this.authservice.emitPostSubject()
   } 
 }
 

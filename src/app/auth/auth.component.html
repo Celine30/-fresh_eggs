@@ -3,15 +3,18 @@
 <div class="container-form text-center">
     <form [formGroup]="AuthForm" (ngSubmit)="onsignIn()">
 
-    <mat-form-field appearance="fill" class="col-6">
+    <mat-form-field appearance="fill" class="full-widthB">
         <mat-label>Identifiant</mat-label>
         <input matInput formControlName="identifiant" >
     </mat-form-field>
     <br>
-    <mat-form-field appearance="fill" class="col-6">
-        <mat-label>Mot de passel</mat-label>
-        <input matInput formControlName="mdp" >
-    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-widthB">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput formControlName="mdp" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
  
     <br>
     <button mat-raised-button color="primary" type=submit class="mb-5" >Envoyer les informations</button>

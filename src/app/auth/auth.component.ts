@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { AppComponent } from '../app.component';
 
 
 @Component({
@@ -14,10 +15,11 @@ import { AuthService } from '../services/auth.service';
 export class AuthComponent implements OnInit {
   
   AuthForm : FormGroup;
-  authstatus : boolean;
+  authstatus = false;
   error = false;
+  hide = true;
 
-  constructor( private router: Router , private authService: AuthService, private formBuilder : FormBuilder) { }
+  constructor( private router: Router , private authService: AuthService, private formBuilder : FormBuilder, private appcomponent : AppComponent) { }
 
   initForm(){
     this.AuthForm = this.formBuilder.group({
@@ -35,17 +37,11 @@ export class AuthComponent implements OnInit {
     const formValue = this.AuthForm.value;
     this.authService.signIn(formValue)
     this.authstatus = this.authService.isAuth;
+    this.appcomponent.backoff = this.authstatus
     this.error = this.authService.error;
     this.router.navigate(['backoff']);
       }
     
-  
-
-  onsignOut(){
-    console.log('se déconnecter');
-    this.authService.signOut();
-    this.authstatus = this.authService.isAuth;
-  }
 
 }
 
