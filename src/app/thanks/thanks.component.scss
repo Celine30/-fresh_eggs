@@ -1,0 +1,19 @@
+@import '../../styles.scss';
+
+a{
+    color:#333!important;
+}
+a:hover{
+    text-decoration: underline;
+    text-decoration-color:$colorPrimary;
+
+}
+
+.text_thanks{
+    padding-top:50px;
+    p{
+        font-size:2em;
+        line-height: 190%;
+       
+    }
+}
