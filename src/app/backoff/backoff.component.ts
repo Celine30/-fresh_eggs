@@ -34,7 +34,7 @@ export class BackoffComponent implements OnInit {
   minDate: Date;
   orders=[];
   orderSubscription: Subscription;
-  displayedColumns: string[] = ['name', 'last_name', 'date', 'boite'];
+  displayedColumns: string[] = ['name', 'last_name', 'ntel', 'date', 'boite'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   
   @ViewChild(MatSort, {static: true}) sort: MatSort;

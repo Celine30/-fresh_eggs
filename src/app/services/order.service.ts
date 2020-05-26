@@ -43,7 +43,7 @@ export class OrderService{
             .subscribe(
                 (response) =>{
                     for (const property of Object.values(response)) {
-                        this.orderUnit = {name:property.name.toUpperCase(), last_name:property.last_name.toUpperCase(), date:property.date, boite:parseInt(property.boite)}
+                        this.orderUnit = {name:property.name.toUpperCase(), last_name:property.last_name.toUpperCase(), ntel:property.number, date:property.date, boite:parseInt(property.boite)}
                         this.tableau.push(this.orderUnit)
                     }
                     this.orders=this.tableau
