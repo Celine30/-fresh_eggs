@@ -52,8 +52,8 @@ export class HomeComponent implements OnInit {
     const formValue = this.ResaForm.value;
     console.log(formValue)
     this.orderservice.addOrder(formValue); 
-    this.resetForm();
-    this.Router.navigate(["thanks"]);
+    //this.resetForm();
+    //this.Router.navigate(["thanks"]);
   }
 
 

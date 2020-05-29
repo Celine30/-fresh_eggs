@@ -1,0 +1,14 @@
+.container{
+    display: flex;
+    height: 86vh;
+}
+.container_text{
+    margin:auto;
+    align-items: center;
+    p i {
+        font-size: 1.5em;
+    }
+    a{
+        color:#333
+    }
+}

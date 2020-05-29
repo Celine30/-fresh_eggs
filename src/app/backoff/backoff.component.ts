@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnDestroy } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,6 +8,9 @@ import { MatSort } from '@angular/material/sort';
 import { AuthService } from '../services/auth.service';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
+
+
+
 
 export interface PeriodicElement {
   name: string;
@@ -27,7 +30,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./backoff.component.scss']
 })
 
-export class BackoffComponent implements OnInit {
+export class BackoffComponent implements OnInit, OnDestroy {
 
   
   FiltreForm : FormGroup;
@@ -64,7 +67,9 @@ export class BackoffComponent implements OnInit {
 
   onSubmitForm(){
     const formValue = this.FiltreForm.value.date;
-    this.applyFilter(formValue.toISOString())
+    console.log(formValue)
+    console.log(formValue.toString())
+    this.applyFilter(formValue.toString())
   }
 
   logOut(){
@@ -88,9 +93,16 @@ export class BackoffComponent implements OnInit {
     this.orderSubscription = this.orderservice.ordersSubject.subscribe(
       (response)=>{
         this.dataSource.data= response;
-        console.log(this.dataSource.data)
+        //console.log(this.dataSource.data)
       }
     );
+  }
+
+  ngOnDestroy() {
+    console.log(this.dataSource.data)
+    this.orderSubscription.unsubscribe();
+    this.dataSource.data=[];
+    console.log(this.dataSource.data)
   }
 
 }
